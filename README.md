@@ -1,13 +1,13 @@
 # logServer
 
-Quick and dirty nodeJS server that can be used for logging via http. I use this mostly for my ESP dev projects. Heres's my logging code for the ESP:
+Quick and dirty nodeJS server that can be used for logging via http. You'll get a live log in your browser via SSE. Open the http://SERVER_NAME:PORT/ in your browser and select the channel from the dropdown. The server can handle multiple log channels. Send your log message in the body and do a POST to http://SERVER_NAME:PORT/log/CHANNEL_NAME. If CHANNEL_NAME does not exist yet, the server will create that channel. I use this mostly for my ESP dev projects. Heres's my logging code for the ESP:
 
 ```cpp
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include "freertos/semphr.h"
 
-#define SERVER_URL "http://[YOU_RSERVER_IP]:8080/log/[logchannel]"
+#define SERVER_URL "http://[YOU_RSERVER_IP]:8080/log/myESP"
 #define MAX_LOG_SIZE 255
 
 #define LOG_PRINTLN(msg) logWrapper((String(msg) + "\n").c_str())
